@@ -1,10 +1,8 @@
 # Cell counting pipeline for brain organoids
 ---
-This repository contains a pipeline for semi-automatic cell and cell positive
-counting in multi-channel z-stacks.
+This repository contains a pipeline for semi-automatic ROI selectiong and cell (positive) counting in multi-channel z-stacks.
 
-The pipeline is based on cell segmentation with pretrained deep learning networks
- [CellPose](http://www.cellpose.org/) and supports images from Zeiss microscopes (.czi, .lsm).
+The pipeline is based on cell segmentation with pre=trained deep learning networks with [CellPose](http://www.cellpose.org/) and supports images from Zeiss microscopes (.czi, .lsm).
 
 
  ## Steps
@@ -15,13 +13,15 @@ The pipeline is based on cell segmentation with pretrained deep learning network
  * Choose number of z-planes used as basis for later count (e.g. *+-1*)
  * Enter approximate cell diameter
 
- Die command to run CellPose on extracted regions of interest will automatically be copied to clipboard
+ The command to run CellPose on extracted regions of interest will automatically be copied to yo9ur clipboard.
 
  ### 2. Run CellPose
- * Open command shell
+ * Open command shell (Annaconda prompt)
+ * Activate CellPose environment with `conda activate cellpose`
  * Paste CellPose command (`RIGHT-click` or `CTRL+V`)
 
 ### 3. CellPose filter
+---
 
 #### Example: single file: *<my_seg.npy>*
 `$ cellpose_filter --min-area 100 --max-area 4000 --min-circularity 0.8 <my_seg.npy>`
@@ -44,7 +44,7 @@ usage: cellpose_filter [-h] [--no-display] [--min-area MIN_AREA]
                        [--min-roundness MIN_ROUND] [--min-solidity MIN_SOLID]
                        input [input ...]
 
-Filter cellpose segmentations and create filtered tif and csv output of the
+Filter cellpose segmentations and create filtered `.tif` and `.csv` output of the
 segmentation
 
 positional arguments:
@@ -65,11 +65,12 @@ optional arguments:
 
 
 #### Output:
-In the same folder as input file
+In the same folder as input file:
 * Excel table with mean intensities per channel for filtered cells.
 
----
+
 ## Installation
+---
 Anaconda Python distribution with Python >= 3.6 recommended
 
 1. git clone this repository
